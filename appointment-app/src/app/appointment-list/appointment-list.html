@@ -3,16 +3,37 @@
 <h3>{{appointment.title}}</h3>
 <h3>{{appointment.date}}</h3> -->
 
-<div>
-    <!-- Two way binding -->
-    <input [(ngModel)]="newAppointmentTitle" placeholder="Enter the Title">
-    <input [(ngModel)]="newAppointmentDate" type="date" placeholder="Enter the Date">
-    <button (click)="addNewAppointment()">Add</button>
+<div class="container">
+    <div class="card mt-3">
+        <!-- grid system -->
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">Create new appointment</h2>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+               <input class="form-control" [(ngModel)]="newAppointmentTitle" placeholder="Enter the Title">
+            </div>
+            <div class="col-md-4">
+              <input class="form-control" [(ngModel)]="newAppointmentDate" type="date" placeholder="Enter the Date">
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-primary w-100" (click)="addNewAppointment()">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mt-5">Appointments</h2>
+    <ul class="list-group mt-3">
+        @for (appointment of appointments; track appointment.id) {
+            <li class="list-group-item d-flex justify-content-between align-items-center">{{appointment.id}} - {{appointment.title}} - {{appointment.date | date : 'dd.MM.yyyy'}} <button class=" btn btn-danger" (click)="deleteAppointment($index)">Delete</button></li> 
+        }
+    </ul>   
 </div>
 
-<ul>
-    @for (appointment of appointments; track appointment.id) {
-        <li>{{appointment.id}} - {{appointment.title}} - {{appointment.date | date : 'dd.MM.yyyy'}}</li> 
-        <button (click)="deleteAppointment($index)">Delete</button>
-    }
-</ul>
+
+
+
+
