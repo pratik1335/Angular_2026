@@ -1,0 +1,18 @@
+<!-- One way binding -->
+<!-- <h3>{{appointment.id}}</h3>
+<h3>{{appointment.title}}</h3>
+<h3>{{appointment.date}}</h3> -->
+
+<div>
+    <!-- Two way binding -->
+    <input [(ngModel)]="newAppointmentTitle" placeholder="Enter the Title">
+    <input [(ngModel)]="newAppointmentDate" type="date" placeholder="Enter the Date">
+    <button (click)="addNewAppointment()">Add</button>
+</div>
+
+<ul>
+    @for (appointment of appointments; track appointment.id) {
+        <li>{{appointment.id}} - {{appointment.title}} - {{appointment.date | date : 'dd.MM.yyyy'}}</li> 
+        <button (click)="deleteAppointment($index)">Delete</button>
+    }
+</ul>
