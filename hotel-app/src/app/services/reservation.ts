@@ -62,6 +62,7 @@ export class ReservationService {
         localStorage.setItem('reservations', JSON.stringify(this.reservations));
     }
 
+    // COMPLEX Feature
     // update reservation : UPDATE operation
     updateReservation(updatedReservation : Reservation): void{
         let index = this.reservations.findIndex(res => res.id === updatedReservation.id);

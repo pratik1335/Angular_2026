@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ReservationService } from '../../services/reservation';
 import { Router } from '@angular/router';
+import { Home } from "../../home/home";
 
 @Component({
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, Home],
   selector: 'app-reservation-form',
   styleUrl: './reservation-form.css',
   templateUrl: './reservation-form.html',
