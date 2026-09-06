@@ -1,9 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Reservation } from '../../models/reservations';
+import { ReservationService } from '../../services/reservation';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-reservation-list',
   styleUrl: './reservation-list.css',
   templateUrl: './reservation-list.html',
 })
-export class ReservationList {}
+export class ReservationList implements OnInit {
+
+  constructor(
+    private reservationService : ReservationService,
+    private router : Router
+  ){}
+
+  reservations : Reservation[] = [];
+
+  ngOnInit(): void {
+    this.reservations = this.reservationService.getReservations();
+  }
+
+  deleteReservation(id : string){
+    this.reservationService.deleteReservation(id);
+  }
+
+  back(){
+    this.router.navigate(['/new'])
+  }
+
+}
