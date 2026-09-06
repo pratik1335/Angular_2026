@@ -58,15 +58,27 @@ export class ReservationService {
     // delete reservation : DELETE operation
     deleteReservation(id: string): void {
         let index = this.reservations.findIndex(res => res.id === id);
-        this.reservations.splice(index,1);
-        localStorage.setItem('reservations', JSON.stringify(this.reservations));
+
+        if(index !== -1){
+            this.reservations.splice(index,1);
+            localStorage.setItem('reservations', JSON.stringify(this.reservations));
+        }
     }
 
     // COMPLEX Feature
     // update reservation : UPDATE operation
-    updateReservation(updatedReservation : Reservation): void{
-        let index = this.reservations.findIndex(res => res.id === updatedReservation.id);
-        this.reservations[index] = updatedReservation;
-        localStorage.setItem('reservations', JSON.stringify(this.reservations));
+    // updateReservation(updatedReservation : Reservation): void{
+    updateReservation(id: string, updatedReservation : Reservation): void{
+        // let index = this.reservations.findIndex(res => res.id === updatedReservation.id);
+        let index = this.reservations.findIndex(res => res.id === id);
+
+        if(index !== -1){
+            // Note: While updating a reservation, the form value does not contain the ID, so we must preserve the existing ID before replacing the old reservation object.
+            // this is done to avoid the bug:
+            // First reservation create → Edit → ID works, Second reservation create → first reservation's ID "undefined"
+            updatedReservation.id = id;
+            this.reservations[index] = updatedReservation;
+            localStorage.setItem('reservations', JSON.stringify(this.reservations));
+        }
     }
 }
