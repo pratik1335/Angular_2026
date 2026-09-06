@@ -1,21 +1,41 @@
 <app-home></app-home>
 
-<h2>Reservation List</h2>
+<h2 class="mt-5 mb-3">Reservation List:</h2>
 
-<ul>
-    @if(reservations.length){
-        @for (reservation of reservations; track reservation.id) {
-            <li>Check-In Date: {{reservation.checkInDate}}</li>
-            <li>Check-Out Date: {{reservation.checkOutDate}}</li>
-            <li>Guest: {{reservation.guestName}}</li>
-            <li>Email: {{reservation.guestEmail}}</li>
-            <li>Room No.:{{reservation.roomNumber}}</li>
-            <button (click)="deleteReservation(reservation.id)">Delete</button>
-            <button [routerLink]="['/edit', reservation.id]">Edit</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Guest</th>
+            <th>Email</th>
+            <th>Room No.</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(reservations.length){
+            @for (reservation of reservations; track reservation.id) {
+                    <tr>
+                        <td>{{reservation.guestName}}</td>
+                        <td>{{reservation.guestEmail}}</td>
+                        <td>{{reservation.roomNumber}}</td>
+                        <td>{{reservation.checkInDate}}</td>
+                        <td>{{reservation.checkOutDate}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger mx-1" (click)="deleteReservation(reservation.id)">Delete</button>
+                            <button class="btn btn-sm btn-primary mx-1" [routerLink]="['/edit', reservation.id]">Edit</button>
+                        </td>
+                    </tr>
+                }
+        } @else {
+            <tr>
+                <td colspan="6" class="text-center">
+                    No reservations available!!
+                </td>
+            </tr>
         }
-    } @else {
-        <p>No reservations available!!</p>
-    }
-</ul>
+    </tbody>
+</table>
 
-<button (click)="back()">Back</button>
+<!-- <button class="btn btn-primary mt-5" (click)="back()">Back</button> -->
