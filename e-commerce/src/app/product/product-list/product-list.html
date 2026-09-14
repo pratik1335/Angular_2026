@@ -1,13 +1,35 @@
-<h1>Product List Loaded</h1>
+<!-- <h1>Product List Loaded</h1>
 <p>Total products: {{ products.length }}</p>
 
 <div> 
     @for (product of products; track product.id) {
         <h2>{{ product.name }}</h2>
     }
-</div>
+</div> -->
 
 <!-- Note: the data will not show with ng serve, we have to do "ng serve --configuration=development"
      if we have environments files.
      check the configurations//development in Angular.json file
  -->
+
+
+<!-- UI using Angular Material -->
+
+<div> 
+    @for (product of products; track product.id) {
+        <mat-card class="product-card">
+            <!-- <img mat-card-image src="assets/images/{{product.image_url}}"> -->
+            <img mat-card-image [src]="'assets/images/' + product.image_url ">
+            <mat-card-content>
+                <mat-card-title>{{product.name}}</mat-card-title>
+                <mat-card-subtitle>{{product.price | currency:"USD"}}</mat-card-subtitle>
+            </mat-card-content>
+        </mat-card>
+    }
+</div>
+
+<!-- Understanding variables in css -->
+<!-- <h2>Hello Friends</h2>
+<p class="paragraph">How are you!!!</p> -->
+
+

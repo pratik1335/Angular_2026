@@ -1,0 +1,21 @@
+.product-card{
+    max-width: 150px;
+}
+
+
+/*
+Rule:
+- Component-specific variable → :host
+- Entire application variable → global styles.css me :root
+:host{
+    --main-color : #dc2727;
+}
+
+h2{
+    color: var(--main-color)
+}
+
+p{
+    color: var(--main-color);
+}
+*/
