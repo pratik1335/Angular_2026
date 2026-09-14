@@ -36,7 +36,10 @@ export class ReservationList implements OnInit {
   }
 
   deleteReservation(id : string){
-    this.reservationService.deleteReservation(id);
+    this.reservationService.deleteReservation(id).subscribe(() => {
+      console.log("Delete request got processed!!");
+      
+    });
   }
 
   back(){

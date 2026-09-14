@@ -38,17 +38,10 @@ export class ReservationForm implements OnInit {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
 
     if(id){
-      // Get the reservation using the ID from the URL.
-      // The reservation can be undefined if the ID does not exist.
-      let reservation = this.reservationService.getReservation(id);
-
-      // we are patching the value for the reservation.
-      // And this can only work if we know that we for sure have a reservation 
-      // because we can get an undefined here.
-      // Fill the form with the existing reservation data.
-      // This is used when editing an existing reservation.
-      if(reservation)
-        this.reservationForm.patchValue(reservation);
+      this.reservationService.getReservation(id).subscribe(reservation => {
+        if(reservation)
+          this.reservationForm.patchValue(reservation);
+      });
     }
   }
 
@@ -62,12 +55,14 @@ export class ReservationForm implements OnInit {
 
       if(id){
         // Update the existing reservation
-        this.reservationService.updateReservation(id, reservation);
+        this.reservationService.updateReservation(id, reservation).subscribe(() => {
+          console.log("Update request got processed!!");
+        });
       } else {
         // New reservation
-        // add the created form as reservation data to the reservation service.
-        // This will add the reservation to the list of reservations in the service.
-        this.reservationService.addReservation(reservation); 
+        this.reservationService.addReservation(reservation).subscribe(() => {
+          console.log("Create request got processed!!");
+        }); 
       }
 
       
