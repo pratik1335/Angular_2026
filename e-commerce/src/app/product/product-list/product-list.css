@@ -1,5 +1,50 @@
 .product-card{
     max-width: 150px;
+
+    transition: transform 0.2s;
+}
+
+.product-card:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+mat-card-subtitle{
+    color: rgb(110, 109, 106);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  overflow: hidden;
+}
+
+.product-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+@media(max-width:1200px){
+    .product-grid{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media(max-width: 900px){
+    .product-grid{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 600px){
+    .product-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 
