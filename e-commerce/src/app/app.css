@@ -1,0 +1,12 @@
+:host {
+  --toolbar-color: #6e6cc9;
+}
+
+.app-toolbar {
+  background-color: var(--toolbar-color);
+  color: white;
+}
+
+mat-toolbar-row a{
+    color: white;
+}
