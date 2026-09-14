@@ -4,5 +4,5 @@
 
 export const environment = {
     // add the same path as mentioned in the mockoon
-    apiUrl: "localhost:3000",
+    apiUrl: "http://localhost:3000",
 };
