@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../services/product-service';
 import { Product } from '../../models/product';
 import { MatCardModule } from '@angular/material/card';
@@ -18,7 +18,7 @@ export class ProductList implements OnInit{
     we have to create a property here and share it using the interpolation.
     So we create the property which we call products.
   */
-  products : Product[] = [];
+  products = signal<Product[]>([]);
 
   /*
     we first of all need an instance of our product service.
@@ -34,8 +34,14 @@ export class ProductList implements OnInit{
     So therefore we use the oninit lifecycle hook that you have already learned about.
   */
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(data => {
-      this.products = data;
-    })
-  }
+  this.productService.getProducts().subscribe({
+    next: (data) => {
+      console.log('Products received:', data);
+      this.products.set(data);
+    },
+    error: (error) => {
+      console.error('Products API error:', error);
+    }
+  });
+}
 }

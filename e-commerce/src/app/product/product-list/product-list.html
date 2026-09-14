@@ -20,7 +20,7 @@
     <h2>Our latest collection</h2>
 
     <div class="product-grid"> 
-        @for (product of products; track product.id) {
+        @for (product of products(); track product.id) {
         <mat-card class="product-card">
             <!-- <img mat-card-image src="assets/images/{{product.image_url}}"> -->
             <img mat-card-image [src]="'assets/images/' + product.image_url ">
