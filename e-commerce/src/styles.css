@@ -10,3 +10,29 @@ Rule:
 } 
 
 */
+
+body{
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue" sans-serif;
+    background-color: rgb(244, 244, 244);
+}
+
+.container{
+    max-width: 1200px;
+    padding: 50px;
+    margin: auto;
+}
+
+.container-sm{
+    max-width: 800px;
+    padding: 50px;
+    margin: auto;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
