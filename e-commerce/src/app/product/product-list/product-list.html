@@ -1,1 +1,13 @@
-<p>product-list works!</p>
+<h1>Product List Loaded</h1>
+<p>Total products: {{ products.length }}</p>
+
+<div> 
+    @for (product of products; track product.id) {
+        <h2>{{ product.name }}</h2>
+    }
+</div>
+
+<!-- Note: the data will not show with ng serve, we have to do "ng serve --configuration=development"
+     if we have environments files.
+     check the configurations//development in Angular.json file
+ -->
