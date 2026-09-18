@@ -13,9 +13,12 @@ export class CartService {
 
     constructor(private http : HttpClient){}
 
-    addCart(product : Product) : Observable<Product>{
+    
+    // Observable<Product> to get the info that you have added this product in the cart.
+    addToCart(product : Product) : Observable<Product>{
         return this.http.post<Product>(this.apiUrl, product);
     }
+    
 
     getCartItems() : Observable<Product[]>{
         return this.http.get<Product[]>(this.apiUrl);
