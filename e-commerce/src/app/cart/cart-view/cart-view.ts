@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CartService } from '../../services/cart-service';
 import { Product } from '../../models/product';
 import { MatCardModule } from '@angular/material/card';
@@ -14,13 +14,28 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class CartView implements OnInit {
 
-  cartItems : Product[] = [];
+  // using signals to handle data not rendering issues
+  cartItems = signal<Product[]>([]);
+
+  totalPrice : number = 0;
 
   constructor(private cartService : CartService){}
 
   ngOnInit() : void{
     this.cartService.getCartItems().subscribe(data => {
-      this.cartItems = data;
+      this.cartItems.set(data);
+
+      this.totalPrice = this.getTotalPrice();
     })
+  }
+
+  getTotalPrice() : number{
+    let total = 0;
+
+    for(let item of this.cartItems()){
+      total += item.price;
+    }
+
+    return total;
   }
 }

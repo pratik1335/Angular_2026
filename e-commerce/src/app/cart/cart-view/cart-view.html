@@ -3,12 +3,18 @@
 
     <mat-card>
         <mat-list>
-            @for (item of cartItems; track item.id) {
+            @for (item of cartItems(); track item.id) {
                 <mat-list-item>
                         <span matListItemTitle>{{item.name}}</span>
                         <span matListItemLine>{{item.price | currency:'USD'}}</span>
                 </mat-list-item>
             }
+        </mat-list>
+        <mat-list>
+            <mat-list-item>
+                    <span class="price" matListItemTitle>Total</span>
+                    <span class="price" matListItemLine>{{totalPrice | currency:'USD'}}</span>
+            </mat-list-item>
         </mat-list>
     </mat-card>
 </div>

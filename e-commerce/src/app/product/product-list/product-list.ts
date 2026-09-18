@@ -18,6 +18,8 @@ export class ProductList implements OnInit{
     we have to create a property here and share it using the interpolation.
     So we create the property which we call products.
   */
+  
+  // using signals to handle data not rendering issues
   products = signal<Product[]>([]);
 
   /*
