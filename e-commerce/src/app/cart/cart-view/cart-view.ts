@@ -42,7 +42,12 @@ export class CartView implements OnInit {
   }
 
   // when youn click on cleaqr button then see the logs on mockoon to see the DELETE request.
-  clearCart(){
+  clearCart() : void{
     this.cartService.clearCart().subscribe();
+  }
+
+  checkout() : void{
+    // cartItems has all the products.
+    this.cartService.checkoutCart(this.cartItems()).subscribe();
   }
 }

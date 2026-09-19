@@ -9,22 +9,31 @@ import { Observable } from 'rxjs';
 
 export class CartService {
 
-    apiUrl = environment.apiUrl + '/cart';
+    // this url is for Cart
+    apiCartUrl = environment.apiUrl + '/cart';
+
+    // this url is for checkout
+    apiCheckoutUrl = environment.apiUrl + '/checkout';
 
     constructor(private http : HttpClient){}
 
     
     // Observable<Product> to get the info that you have added this product in the cart.
     addToCart(product : Product) : Observable<Product>{
-        return this.http.post<Product>(this.apiUrl, product);
+        return this.http.post<Product>(this.apiCartUrl, product);
     }
     
 
     getCartItems() : Observable<Product[]>{
-        return this.http.get<Product[]>(this.apiUrl);
+        return this.http.get<Product[]>(this.apiCartUrl);
     }
 
     clearCart() : Observable<void>{
-        return this.http.delete<void>(this.apiUrl)
+        return this.http.delete<void>(this.apiCartUrl)
+    }
+
+    // Return type is void, because we are just submitting the information, not returning anything.
+    checkoutCart(products : Product[]) : Observable<void>{
+        return this.http.post<void>(this.apiCheckoutUrl, products);
     }
 }
