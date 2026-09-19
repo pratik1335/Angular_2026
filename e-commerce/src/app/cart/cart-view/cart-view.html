@@ -14,7 +14,7 @@
                     <span class="price" matListItemLine>{{totalPrice | currency:'USD'}}</span>
             </mat-list-item>
             <mat-list-item class="text-right">
-                <button mat-flat-button style="background-color: #b8b5b6;color: #0f0f0f; border-radius: 4px;font-size: 18px;">Clear</button>
+                <button (click)="clearCart()" mat-flat-button style="background-color: #b8b5b6;color: #0f0f0f; border-radius: 4px;font-size: 18px;">Clear</button>
             </mat-list-item>
             <mat-list-item class="text-right">
                 <button mat-raised-button style="background-color: #f33d7f;color: #fff; border-radius: 4px;font-size: 18px;">Checkout</button>

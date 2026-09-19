@@ -15,6 +15,7 @@ import { CurrencyPipe } from '@angular/common';
 export class CartView implements OnInit {
 
   // using signals to handle data not rendering issues
+  // cartItems : Product[] = [];
   cartItems = signal<Product[]>([]);
 
   totalPrice : number = 0;
@@ -23,6 +24,7 @@ export class CartView implements OnInit {
 
   ngOnInit() : void{
     this.cartService.getCartItems().subscribe(data => {
+      // this.cartItems = data;
       this.cartItems.set(data);
 
       this.totalPrice = this.getTotalPrice();
@@ -37,5 +39,10 @@ export class CartView implements OnInit {
     }
 
     return total;
+  }
+
+  // when youn click on cleaqr button then see the logs on mockoon to see the DELETE request.
+  clearCart(){
+    this.cartService.clearCart().subscribe();
   }
 }
