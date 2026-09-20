@@ -3,9 +3,11 @@ import { ProductService } from '../../services/product-service';
 import { Product } from '../../models/product';
 import { MatCardModule } from '@angular/material/card';
 import { CurrencyPipe } from '@angular/common';
+import { CartService } from '../../services/cart-service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
-  imports: [MatCardModule, CurrencyPipe],
+  imports: [MatCardModule, CurrencyPipe, MatSnackBarModule],
   selector: 'app-product-list',
   styleUrl: './product-list.css',
   templateUrl: './product-list.html',
@@ -27,7 +29,10 @@ export class ProductList implements OnInit{
     So let's create a constructor to make use of the dependency injection 
     and can do that by creating a private product service here of type product service.
   */
-  constructor(private productService : ProductService){}
+  constructor(private productService : ProductService, 
+    private cartService : CartService,
+    private snackbar : MatSnackBar  
+  ){}
 
   /*
     First of all, we have to think about when do we want to call that method?
@@ -36,8 +41,21 @@ export class ProductList implements OnInit{
     So therefore we use the oninit lifecycle hook that you have already learned about.
   */
   ngOnInit(): void {
-  this.productService.getProducts().subscribe(data => {
-    this.products.set(data);
-  });
-}
+    this.productService.getProducts().subscribe(data => {
+      this.products.set(data);
+    });
+  }
+
+  addToCart(product: Product) : void{
+    this.cartService.addToCart(product).subscribe({
+      // success statement (call was successful)
+      next: () => {
+        this.snackbar.open("Product added to cart!", "", {
+          duration: 2000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top'
+        })
+      }
+    });
+  }
 }

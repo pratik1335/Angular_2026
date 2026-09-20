@@ -21,7 +21,7 @@
 
     <div class="product-grid"> 
         @for (product of products(); track product.id) {
-        <mat-card class="product-card">
+        <mat-card class="product-card" (click)="addToCart(product)">
             <!-- <img mat-card-image src="assets/images/{{product.image_url}}"> -->
             <img mat-card-image [src]="'assets/images/' + product.image_url ">
             <mat-card-content>
