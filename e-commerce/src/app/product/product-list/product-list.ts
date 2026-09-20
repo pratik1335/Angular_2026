@@ -5,9 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../../services/cart-service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  imports: [MatCardModule, CurrencyPipe, MatSnackBarModule],
+  imports: [MatCardModule, CurrencyPipe, MatSnackBarModule, MatInputModule],
   selector: 'app-product-list',
   styleUrl: './product-list.css',
   templateUrl: './product-list.html',
@@ -23,6 +24,10 @@ export class ProductList implements OnInit{
   
   // using signals to handle data not rendering issues
   products = signal<Product[]>([]);
+
+  // Filtered array after the user search for any product and the matching products will appear
+  // filteredProducts : Product[] = [];
+  filteredProducts = signal<Product[]>([]);
 
   /*
     we first of all need an instance of our product service.
@@ -43,6 +48,9 @@ export class ProductList implements OnInit{
   ngOnInit(): void {
     this.productService.getProducts().subscribe(data => {
       this.products.set(data);
+
+      // so that we can initialize this filtered products to contain all the products.
+      this.filteredProducts.set(data);
     });
   }
 
@@ -57,5 +65,29 @@ export class ProductList implements OnInit{
         })
       }
     });
+  }
+
+  // Filter method
+  applyFilter(event : Event): void{
+    // Read the value from the entire input field
+    let searchTerm = (event.target as HTMLInputElement).value;
+
+    // Convert it into lower case, as the user most of time type in lower case
+    searchTerm = searchTerm.toLowerCase();
+
+    // Filter the product
+
+    /*
+    this.filteredProducts = this.products().filter(
+      product => product.name.toLowerCase().includes(searchTerm);
+    )
+    */
+
+    // using signals
+    this.filteredProducts.set(
+       this.products().filter(
+        product => product.name.toLowerCase().includes(searchTerm)
+      )
+    );
   }
 }

@@ -19,8 +19,13 @@
 
     <h2>Our latest collection</h2>
 
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+    </mat-form-field>
+
     <div class="product-grid"> 
-        @for (product of products(); track product.id) {
+        <!-- if we use products array then when we search then it will still show the complete list of products -->
+        @for (product of filteredProducts(); track product.id) {
         <mat-card class="product-card" (click)="addToCart(product)">
             <!-- <img mat-card-image src="assets/images/{{product.image_url}}"> -->
             <img mat-card-image [src]="'assets/images/' + product.image_url ">
