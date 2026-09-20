@@ -36,14 +36,8 @@ export class ProductList implements OnInit{
     So therefore we use the oninit lifecycle hook that you have already learned about.
   */
   ngOnInit(): void {
-  this.productService.getProducts().subscribe({
-    next: (data) => {
-      console.log('Products received:', data);
-      this.products.set(data);
-    },
-    error: (error) => {
-      console.error('Products API error:', error);
-    }
+  this.productService.getProducts().subscribe(data => {
+    this.products.set(data);
   });
 }
 }
