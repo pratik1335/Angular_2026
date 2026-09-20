@@ -6,9 +6,10 @@ import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../../services/cart-service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-  imports: [MatCardModule, CurrencyPipe, MatSnackBarModule, MatInputModule],
+  imports: [MatCardModule, CurrencyPipe, MatSnackBarModule, MatInputModule, MatSelectModule],
   selector: 'app-product-list',
   styleUrl: './product-list.css',
   templateUrl: './product-list.html',
@@ -28,6 +29,8 @@ export class ProductList implements OnInit{
   // Filtered array after the user search for any product and the matching products will appear
   // filteredProducts : Product[] = [];
   filteredProducts = signal<Product[]>([]);
+
+  sortOrder : string = "";
 
   /*
     we first of all need an instance of our product service.
@@ -89,5 +92,28 @@ export class ProductList implements OnInit{
         product => product.name.toLowerCase().includes(searchTerm)
       )
     );
+
+    // after searching, we also want to sort again
+    this.sortProducts(this.sortOrder);
+  }
+
+  // Sort the Products
+  sortProducts(sortValue : string){
+    /* 
+      So later on when we filter and sort when we have both of the functionalities.
+      Well, we don't want to screw it up, right?
+      Sometimes when we search for something, we still want to keep the filter active.
+      And when we remove something or sort after filtering, we still want everything else to be working fine.
+      In that way, We have to keep the information on how the sorting looks like right now.
+    */
+
+    this.sortOrder = sortValue;
+
+    if(this.sortOrder === "priceLowHigh"){
+      this.filteredProducts().sort((a,b) => a.price - b.price)
+    } else if(this.sortOrder === "priceHighLow"){
+      this.filteredProducts().sort((a,b) => b.price - a.price)
+    }
+
   }
 }

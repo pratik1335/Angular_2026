@@ -23,6 +23,13 @@
         <input matInput (keyup)="applyFilter($event)" placeholder="Search">
     </mat-form-field>
 
+    <mat-form-field class="sort-dropdown">
+        <mat-select (selectionChange)="sortProducts($event.value)" placeholder="Sort">
+            <mat-option value="priceLowHigh">Price: Low to High</mat-option>
+            <mat-option value="priceHighLow">Price: High to Low</mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <div class="product-grid"> 
         <!-- if we use products array then when we search then it will still show the complete list of products -->
         @for (product of filteredProducts(); track product.id) {
