@@ -1,0 +1,7 @@
+// Important Commands to run for this project
+
+1. npm install @ngrx/store
+2. npm install @ngrx/effects
+
+OR
+npm install @ngrx/store @ngrx/effects 
