@@ -25,3 +25,10 @@ And the way a reducer is changing the state is by copying the current state,
 then making changes and returning a new state, right?
 So we take the state, we copy it, make changes, return it.
 */
+
+/*
+Why is a reducer called reducer?
+Well, that's pretty simple because the reducer takes an action and the current state.
+So those two elements and he reduces them to one new state. So action plus current state is equals to a new state.
+So he has reduced those two elements into one new state. This is why a reducer is called a reducer.
+*/
