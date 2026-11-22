@@ -27,3 +27,7 @@
 
 ### Running Unit Tests
     ng test -> Starts the Karma test runner and runs all the unit tests in the project
+
+
+### Testbed API
+    We can use testbed api to inject an instance of a service that we can use of unit testing
