@@ -1,0 +1,9 @@
+<p>user-list-component works!</p>
+
+<div>
+    @for (user of users; track $index) {
+        {{user.name}}
+    }
+</div>
+
+<button (click)="refreshUsers()">Refresh</button>

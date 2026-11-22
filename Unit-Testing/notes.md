@@ -31,3 +31,22 @@
 
 ### Testbed API
     We can use testbed api to inject an instance of a service that we can use of unit testing
+
+### Important
+   Angular handles components and directives and pipes differently in comparison to services.
+   Services, for example, are getting injected.
+
+   But for a component., We have to use the declaration.
+   So we create a declarations array.
+
+### Jasmine's Spy Functionality
+    When we have a dependency our user service because our user list component shows the list of the users and
+    those get fetched from the user service.
+    So we want to separate them because we want to spy on the service.
+    This is because we want to isolate our component and our service when it comes to testing.
+    
+    If we write unit tests for our component, we only want to write the unit test for our component here
+    and the same for the service.
+    So we have to separate them.
+    We do not want to be dependent on the service when we want to test our user list component.
+    So this is why we use Jasmine's "spy" functionality.
