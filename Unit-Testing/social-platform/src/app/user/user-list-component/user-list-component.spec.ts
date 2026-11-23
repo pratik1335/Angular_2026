@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserListComponent } from './user-list-component';
 import { UserService } from '../user-service';
 import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
@@ -61,6 +62,18 @@ describe('UserListComponent', () => {
     // say fixture dot detect changes that one will start the life cycle hook onInit and update all the
     // data bindings.
     fixture.detectChanges()
+
+    expect(userServiceSpy).toHaveBeenCalled();
+  })
+
+  it('should retrieve users from the UserService when the refresh button is clicked', () => {
+    // start the life cycle
+    fixture.detectChanges()
+
+    userServiceSpy.calls.reset(); // so that we don't have any information about prior calls, because we want to check on refresh button now.
+
+    const button = fixture.debugElement.query(By.css('button'));
+    button.triggerEventHandler('click', null);  // invoking the event
 
     expect(userServiceSpy).toHaveBeenCalled();
   })

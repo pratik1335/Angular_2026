@@ -50,3 +50,29 @@
     So we have to separate them.
     We do not want to be dependent on the service when we want to test our user list component.
     So this is why we use Jasmine's "spy" functionality.
+
+
+### Questions on Unit Testing
+    1. What is the primary purpose of a Component Fixture in Angular testing?
+       --- To create and manage a test environment for a component
+    
+    2. Which tool is responsible for running Angular unit tests in a browser environment?
+       --- Karma
+    
+    3. What is the correct way to handle dependencies in component testing?
+       --- Use TestBed.configureTestingModule to provide dependencies
+
+    4. What is ngOnInit testing primarily used for?
+       --- Testing component intialization and lifecycle hooks
+ 
+
+
+
+
+
+
+
+
+
+
+
